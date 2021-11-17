@@ -1,32 +1,27 @@
-import React, {useState, useEffect,useLayoutEffect} from "react";
+import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import Input from "../Input/Input";
 import * as utils from '../../utils';
 
 
-const Form = ({config, configErrors, to, title, titleLink, /* onValueChange, onCustomSubmit*/}) => {
-  
+const Form = ({config, configErrors, to, title, titleLink}) => {
   const [formValue, setFormValue] = useState({});
-  const [errors, setErrors] = useState({});  
+  const [errors, setErrors] = useState({});
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const values = {};
     config.forEach((field) => {
       const { name } = field;
       values[name] = "";
-      // console.log(field);
     });
     setFormValue(values);
   }, [config]);
 
-  
   useEffect(() => {
     const newErrors = {...configErrors};
-    // console.log(newErrors)
     setErrors(newErrors);
   }, [configErrors]);
 
-  
   useEffect(() => {
     Object.keys(formValue).forEach(() => {
       if (!Object.keys(formValue).includes("email")) {
@@ -51,6 +46,10 @@ const Form = ({config, configErrors, to, title, titleLink, /* onValueChange, onC
     });
   }, [formValue])
 
+  useEffect(() => {
+
+  }, [formValue])
+
   const onValueChange = (e) => {
     const {name, value} = e.target
     setFormValue({...formValue, [name]: value})
@@ -60,13 +59,12 @@ const Form = ({config, configErrors, to, title, titleLink, /* onValueChange, onC
     e.preventDefault()
     if(Object.values(errors).every(error=> error)) {
       console.log(errors);
-      console.log(formValue)
       // request
     }
   }
 
   return (      
-    <form className="form" /*onSubmit={sendData}*/>
+    <form className="form">
       {config.map((item) => (
         <Input
           key={item.name}
@@ -74,9 +72,11 @@ const Form = ({config, configErrors, to, title, titleLink, /* onValueChange, onC
           type={item.type}
           onValueChange={onValueChange}
           placeholder={item.placeholder}
+          invalid={errors[item.name]}
+          
+          
         />
       ))}
-      {/* <button onClick={onCustomSubmit} type="button" className="btn btn-primary">{title}</button> */}
       <button onClick={sendData} type="button" className="btn btn-primary">{title}</button>
       <Link to={to}><button className="btn btn-secondary">{titleLink}</button></Link>
     </form>

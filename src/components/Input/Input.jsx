@@ -1,15 +1,19 @@
 import React from "react";
+import "./Input.css";
 
-export default function Input({value, name, placeholder, type, onValueChange, clazz}) {
-  
+export default function Input({value, name, placeholder, type, onValueChange, invalid}) {
+
   return (
-        <input
-            className={`form-control ${clazz}`}
-            value={value}
-            onChange={(e) =>onValueChange(e)}
-            name={name}
-            type={type}
-            placeholder={placeholder}
-        />
+    <div>
+      <input
+      className={`form-control ${invalid ? "" : "invalid"}`}
+      value={value}
+      onChange={(e) =>onValueChange(e)}
+      name={name}
+      type={type}
+      placeholder={placeholder}
+    />
+    </div>
+    
   );
 }
