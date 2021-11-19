@@ -1,10 +1,10 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
-import SignIn from "./pages/SignIn/SignIn";
-import SignUp from "./pages/SignUp/SignUp";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 
-const Router = () => {
+const Router: React.FC = (): JSX.Element => {
     return (
         <Routes>
             <Route path='/' element={<SignIn/>} />

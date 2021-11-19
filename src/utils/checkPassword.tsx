@@ -1,0 +1,1 @@
+export const isCheckPassword = (val: string, min: number, max: number) => val.length > min && val.length < max

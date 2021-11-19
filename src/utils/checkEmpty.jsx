@@ -1,1 +1,0 @@
-export const isCheckEmpty = (val) => val.length !== 0

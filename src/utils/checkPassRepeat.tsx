@@ -1,0 +1,1 @@
+export const isCheckPassRep = (valPass: string, valPassRep: string) => valPass === valPassRep && valPass.length > 0

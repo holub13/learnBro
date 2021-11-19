@@ -1,6 +1,6 @@
 export const config = [
     {
-      name: "login",
+      name: "userName",
       type: "text",
       placeholder: "Enter your User Name"
     },
@@ -20,12 +20,3 @@ export const config = [
       placeholder: "Enter your Password Again",
     },
   ];
-  
-export const configErrors = {
-    login: false,
-    email: false,
-    emailIsFilled: false,
-    passwordMinLength: false,
-    passwordMaxLength: false,
-    passwordRepeat: false
-  };

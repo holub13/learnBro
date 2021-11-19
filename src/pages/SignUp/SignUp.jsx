@@ -1,7 +1,7 @@
 import React from "react";
 import "./SignUp.css";
-import Form from '../../components/Form/Form';
-import {config, configErrors} from "./SignUpConfig"
+import Form from '../../components/Form';
+import {config} from "./SignUpConfig"
 
 export default function SignUp() {
   return (
@@ -9,7 +9,6 @@ export default function SignUp() {
       <h1>Registration</h1>
       <Form
         config={config}
-        configErrors={configErrors}
         to="/"
         titleLink="Sign In"
         title="Sign Up"/>

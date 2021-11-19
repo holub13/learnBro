@@ -1,44 +1,39 @@
 import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
-import Input from "../Input/Input";
+
+import Input from "../Input";
+import * as types from "./types"
+
 import * as utils from '../../utils';
 
-
-const Form = ({config, configErrors, to, title, titleLink}) => {
-  const [formValue, setFormValue] = useState({});
-  const [errors, setErrors] = useState({});
+const Form: React.FC<types.FormProps> = ({config, to, title, titleLink}) => {
+  const [formValue, setFormValue] = useState<types.Fields>({});
+  const [errors, setErrors] = useState<types.ErrorsFields>({});
 
   useEffect(() => {
-    const values = {};
-    config.forEach((field) => {
+    const values: types.Fields = {};
+
+    config.forEach((field: types.ConfigItem) => {
       const { name } = field;
       values[name] = "";
     });
+
     setFormValue(values);
   }, [config]);
 
   useEffect(() => {
-    const newErrors = {...configErrors};
-    setErrors(newErrors);
-  }, [configErrors]);
-
-  useEffect(() => {
-    Object.keys(formValue).forEach(() => {
-      if (!Object.keys(formValue).includes("email")) {
+    Object.keys(formValue).forEach((item:string) => {
+      if (item === "login") {
         const obj = {
           login: utils.isCheckMinLength(formValue.login, 6),
-          loginIsFilled: utils.isCheckEmpty(formValue.login),
-          passwordMinLength: utils.isCheckMinLength(formValue.password, 3),
-          passwordMaxLength: utils.isCheckMaxLength(formValue.password, 22)
+          password: utils.isCheckPassword(formValue.password, 3, 22)
         };
         setErrors((prevState) => ({...prevState, ...obj}));
       }else if (Object.keys(formValue).includes("email")) {
           const obj = {
-          login: utils.isCheckMinLength(formValue.login, 6),
+          userName: utils.isCheckMinLength(formValue.userName, 6),
           email: utils.isCheckEmail(formValue.email),
-          emailIsFilled: utils.isCheckEmpty(formValue.email),
-          passwordMinLength: utils.isCheckMinLength(formValue.password, 3),
-          passwordMaxLength: utils.isCheckMaxLength(formValue.password, 22),
+          password: utils.isCheckPassword(formValue.password, 3, 22),
           passwordRepeat: utils.isCheckPassRep(formValue.password, formValue.passwordRepeat)
         };
         setErrors((prevState) => ({...prevState, ...obj}));
@@ -46,26 +41,23 @@ const Form = ({config, configErrors, to, title, titleLink}) => {
     });
   }, [formValue])
 
-  useEffect(() => {
-
-  }, [formValue])
-
-  const onValueChange = (e) => {
+  const onValueChange = (e: any) => {
     const {name, value} = e.target
     setFormValue({...formValue, [name]: value})
   }
 
-  const sendData = (e) => {
+  const sendData = (e: any) => {
     e.preventDefault()
     if(Object.values(errors).every(error=> error)) {
-      console.log(errors);
+      // console.log(errors);
+      console.log(formValue);
       // request
     }
   }
 
   return (      
-    <form className="form">
-      {config.map((item) => (
+    <form className="form" onSubmit={(e) =>sendData(e) }>
+      {config.map((item: types.ConfigItem) => (
         <Input
           key={item.name}
           name={item.name}
@@ -73,11 +65,9 @@ const Form = ({config, configErrors, to, title, titleLink}) => {
           onValueChange={onValueChange}
           placeholder={item.placeholder}
           invalid={errors[item.name]}
-          
-          
         />
       ))}
-      <button onClick={sendData} type="button" className="btn btn-primary">{title}</button>
+      <button className="btn btn-primary">{title}</button>
       <Link to={to}><button className="btn btn-secondary">{titleLink}</button></Link>
     </form>
   );
