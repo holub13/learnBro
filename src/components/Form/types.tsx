@@ -3,6 +3,7 @@ export interface FormProps {
   to: string
   title: string
   titleLink: string
+  onSubmit?: (param: any) => void
 }
 
 export interface Fields {

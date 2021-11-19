@@ -9,6 +9,7 @@ const Form: React.FC<types.FormProps> = ({
   to,
   title,
   titleLink,
+  onSubmit = () => {},
 }): JSX.Element => {
   const [formValue, setFormValue] = useState<types.Fields>({})
   const [errors, setErrors] = useState<types.Fields>({})
@@ -79,7 +80,7 @@ const Form: React.FC<types.FormProps> = ({
     const valid = validation()
     setErrors(valid)
     if (Object.values(valid).every((error) => error === '')) {
-      console.log(formValue)
+      onSubmit(formValue)
       // request
     }
   }
@@ -93,7 +94,7 @@ const Form: React.FC<types.FormProps> = ({
           type={item.type}
           onValueChange={onValueChange}
           placeholder={item.placeholder}
-          value={formValue[item.name]}
+          value={formValue[item.name] ? formValue[item.name] : ''}
           invalid={errors[item.name]}
         />
       ))}
