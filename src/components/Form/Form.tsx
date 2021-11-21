@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useLayoutEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Input from '../Input/Input'
 import * as types from './types'
@@ -21,7 +21,7 @@ const Form: React.FC<types.FormProps> = ({
     })
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const values: types.Fields = {}
     configZeroFields(values)
     setFormValue(values)

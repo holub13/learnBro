@@ -1,20 +1,23 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import './SignUp.css'
-
-import * as types from '../../components/Form/types'
 
 import Form from '../../components/Form'
 import { config } from './SignUpConfig'
 
 const SignUp: React.FC = (): JSX.Element => {
-  const user = useSelector<types.Fields>((state) => state.user)
+  const dispatch = useDispatch()
+  const user: any = useSelector((state) => state)
 
   const onSubmit: any = (param: any) => {
-    console.log(param)
-    console.log(user)
+    dispatch({
+      type: 'AUTH_REGISTRATION_REQUEST',
+      ...param,
+    })
   }
+  localStorage.setItem(user.login, JSON.stringify(user))
+
   return (
     <section className="Reg">
       <h1>Registration</h1>
