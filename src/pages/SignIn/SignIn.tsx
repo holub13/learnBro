@@ -24,7 +24,7 @@ const SignIn: React.FC = (): JSX.Element => {
       user.auth.login === param.login &&
       user.auth.password === param.password
     ) {
-      navigate('/productList')
+      navigate('/products')
     } else if (user.auth.login !== param.login) {
       setErrorAuth('Вы ввели не верный логин')
       console.log('Логин не верный')

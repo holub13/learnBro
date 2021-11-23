@@ -1,0 +1,15 @@
+.products {
+  /* display: flex; */
+  height: 100vh;
+  /* align-items: center; */
+  font-family: sans-serif;
+  text-align: center;
+  padding-top: 20px;
+  text-shadow: 3px 3px 5px gray;
+  background-color: #bdf78d;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+}
