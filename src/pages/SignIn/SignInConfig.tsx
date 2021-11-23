@@ -1,4 +1,4 @@
-import { ConfigItem } from '../../components/Form/types'
+import { ConfigItem } from '../../components/FormBuilder/types'
 
 export const config: ConfigItem[] = [
   {

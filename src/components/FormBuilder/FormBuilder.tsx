@@ -4,7 +4,7 @@ import Input from '../Input/Input'
 import * as types from './types'
 import * as utils from '../../utils'
 
-const Form: React.FC<types.FormProps> = ({
+const FormBuilder: React.FC<types.FormProps> = ({
   config,
   path,
   title,
@@ -44,14 +44,14 @@ const Form: React.FC<types.FormProps> = ({
             value
           )
             ? ''
-            : 'Меньше нужного'
+            : `Слишком короткий ${item.name}`
         } else if (name === 'max') {
           newErrors[item.name] += utils.isCheckMaxLength(
             formValue[item.name],
             value
           )
             ? ''
-            : 'Больше нужного'
+            : `Слишком длинный ${item.name}`
         } else if (name === 'email') {
           newErrors[item.name] += utils.isCheckEmail(formValue[item.name])
             ? ''
@@ -108,4 +108,4 @@ const Form: React.FC<types.FormProps> = ({
   )
 }
 
-export default Form
+export default FormBuilder

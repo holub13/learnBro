@@ -2,7 +2,7 @@ import { initialState } from './initialState'
 
 import { AuthType } from '../../types/authInterfaces'
 
-const rootReducer = (state = initialState, action: AuthType) => {
+const authReducer = (state = initialState, action: AuthType) => {
   switch (action.type) {
     case 'AUTH_ADD_TO_LOCALSTORAGE':
       localStorage.setItem(
@@ -25,4 +25,4 @@ const rootReducer = (state = initialState, action: AuthType) => {
   }
 }
 
-export default rootReducer
+export default authReducer

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 
 import './SignUp.css'
 
-import Form from '../../components/Form'
+import FormBuilder from '../../components/FormBuilder'
 import { config } from './SignUpConfig'
 import { addToLocalStorage } from '../../store/actions/addToLocalStorage'
 import { addToState } from '../../store/actions/addToState'
@@ -23,7 +23,7 @@ const SignUp: React.FC = (): JSX.Element => {
   return (
     <section className="Reg">
       <h1>Registration</h1>
-      <Form
+      <FormBuilder
         config={config}
         onSubmit={onSubmit}
         path="/"
