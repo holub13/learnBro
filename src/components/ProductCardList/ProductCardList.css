@@ -1,0 +1,21 @@
+.productCardList {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  width: 90vw;
+}
+
+.imageList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  margin-left: 20px;
+  margin-right: 100px;
+}
+img {
+  width: 190px;
+}

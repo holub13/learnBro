@@ -16,7 +16,7 @@ const SignIn: React.FC = (): JSX.Element => {
 
   useEffect(() => {
     const local: any = localStorage.getItem('user')
-    dispatch(addToState(JSON.parse(local)))
+    dispatch(addToState(JSON.parse(local), 'AUTH_ADD_TO_STATE'))
   }, [])
 
   const onSubmit: any = (param: any) => {
