@@ -1,30 +1,32 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 
 import './SignUp.css'
 
-import Form from '../../components/Form'
+import FormBuilder from '../../components/FormBuilder'
 import { config } from './SignUpConfig'
+import { addToLocalStorage } from '../../store/actions/addToLocalStorage'
+import { addToState } from '../../store/actions/addToState'
 
 const SignUp: React.FC = (): JSX.Element => {
   const dispatch = useDispatch()
-  const user: any = useSelector((state) => state)
+
+  useEffect(() => {
+    const local: any = localStorage.getItem('user')
+    dispatch(addToState(JSON.parse(local), 'AUTH_ADD_TO_STATE'))
+  }, [dispatch])
 
   const onSubmit: any = (param: any) => {
-    dispatch({
-      type: 'AUTH_REGISTRATION_REQUEST',
-      ...param,
-    })
+    dispatch(addToLocalStorage(param, 'AUTH_ADD_TO_LOCALSTORAGE'))
   }
-  localStorage.setItem(user.login, JSON.stringify(user))
 
   return (
     <section className="Reg">
       <h1>Registration</h1>
-      <Form
+      <FormBuilder
         config={config}
         onSubmit={onSubmit}
-        to="/"
+        path="/"
         titleLink="Sign In"
         title="Sign Up"
       />

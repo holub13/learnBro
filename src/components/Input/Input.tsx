@@ -11,16 +11,17 @@ const Input: React.FC<InputProps> = ({
   invalid,
 }): JSX.Element => {
   return (
-    <div>
+    <p>
+      <span style={{ color: 'darkred' }}>{invalid}</span>
       <input
-        className={`form-control ${invalid === '' ? '' : 'invalid'}`}
+        className={`form-control ${invalid && 'invalid'}`}
         value={value}
         onChange={(e) => onValueChange(e)}
         name={name}
         type={type}
         placeholder={placeholder}
       />
-    </div>
+    </p>
   )
 }
 

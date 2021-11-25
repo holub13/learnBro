@@ -4,9 +4,9 @@ import Input from '../Input/Input'
 import * as types from './types'
 import * as utils from '../../utils'
 
-const Form: React.FC<types.FormProps> = ({
+const FormBuilder: React.FC<types.FormProps> = ({
   config,
-  to,
+  path,
   title,
   titleLink,
   onSubmit = () => {},
@@ -44,14 +44,14 @@ const Form: React.FC<types.FormProps> = ({
             value
           )
             ? ''
-            : 'Меньше нужного'
+            : `Слишком короткий ${item.name}`
         } else if (name === 'max') {
           newErrors[item.name] += utils.isCheckMaxLength(
             formValue[item.name],
             value
           )
             ? ''
-            : 'Больше нужного'
+            : `Слишком длинный ${item.name}`
         } else if (name === 'email') {
           newErrors[item.name] += utils.isCheckEmail(formValue[item.name])
             ? ''
@@ -75,8 +75,8 @@ const Form: React.FC<types.FormProps> = ({
     setFormValue({ ...formValue, [name]: value })
   }
 
-  const sendData = (e: React.MouseEvent<HTMLElement>) => {
-    e.preventDefault()
+  const sendData = (/*e: React.MouseEvent<HTMLElement>*/) => {
+    // e.preventDefault()
     const valid = validation()
     setErrors(valid)
     if (Object.values(valid).every((error) => error === '')) {
@@ -101,11 +101,11 @@ const Form: React.FC<types.FormProps> = ({
       <button type="button" className="btn btn-primary" onClick={sendData}>
         {title}
       </button>
-      <Link to={to}>
+      <Link to={path}>
         <button className="btn btn-secondary">{titleLink}</button>
       </Link>
     </form>
   )
 }
 
-export default Form
+export default FormBuilder

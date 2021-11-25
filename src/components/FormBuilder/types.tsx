@@ -1,6 +1,6 @@
 export interface FormProps {
   config: ConfigItem[]
-  to: string
+  path: string
   title: string
   titleLink: string
   onSubmit?: (param: any) => void
