@@ -14,7 +14,7 @@ const SignUp: React.FC = (): JSX.Element => {
   useEffect(() => {
     const local: any = localStorage.getItem('user')
     dispatch(addToState(JSON.parse(local), 'AUTH_ADD_TO_STATE'))
-  }, [])
+  }, [dispatch])
 
   const onSubmit: any = (param: any) => {
     dispatch(addToLocalStorage(param, 'AUTH_ADD_TO_LOCALSTORAGE'))

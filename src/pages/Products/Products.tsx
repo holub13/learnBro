@@ -29,49 +29,26 @@ const Products: React.FC = (): JSX.Element => {
 
     getCount(urlPeople, setPeolpeCount, 'ADD_TO_LOCALSTORAGE_PEOPLE')
     getCount(urlStarships, setStarshipsCount, 'ADD_TO_LOCALSTORAGE_STARSHIPS')
-  }, [])
-
-  // useEffect(() => {
-  //   async function getCount(url: string, setItemCount: any) {
-  //     let response = await fetch(url)
-
-  //     if (response.ok) {
-  //       let json = await response.json()
-  //       console.log(json.count)
-  //       if (setItemCount === setPeolpeCount) {
-  //         setPeolpeCount(json.count)
-  //       } else if (setItemCount === setStarshipsCount) {
-  //         setStarshipsCount(json.count)
-  //       }
-  //     } else {
-  //       console.log('Ошибка HTTP: ' + response.status)
-  //     }
-
-  //     setIsLoaded(true)
-  //   }
-
-  //   getCount(urlPeople, setPeolpeCount)
-  //   getCount(urlStarships, setStarshipsCount)
-  // }, [])
+  }, [dispatch])
 
   return (
-    <main className="products">
+    <div className="products">
       <h1>Products</h1>
-      <section className="buttons">
+      <ul className="buttons">
         <Button
-          title="Count of People"
+          title="People"
           count={peolpeCount}
           path="/products/people"
           load={isLoaded}
         />
         <Button
-          title="Count of Starships"
+          title="Starships"
           count={starshipsCount}
           path="/products/starships"
           load={isLoaded}
         />
-      </section>
-    </main>
+      </ul>
+    </div>
   )
 }
 

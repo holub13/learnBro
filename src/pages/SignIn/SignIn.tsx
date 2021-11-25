@@ -17,7 +17,7 @@ const SignIn: React.FC = (): JSX.Element => {
   useEffect(() => {
     const local: any = localStorage.getItem('user')
     dispatch(addToState(JSON.parse(local), 'AUTH_ADD_TO_STATE'))
-  }, [])
+  }, [dispatch])
 
   const onSubmit: any = (param: any) => {
     if (
@@ -35,7 +35,7 @@ const SignIn: React.FC = (): JSX.Element => {
   }
 
   return (
-    <section className="Log">
+    <div className="Log">
       <h1>Log in</h1>
       <span>{errorAuth}</span>
       <FormBuilder
@@ -45,7 +45,7 @@ const SignIn: React.FC = (): JSX.Element => {
         titleLink="Sign Up"
         title="Sign In"
       />
-    </section>
+    </div>
   )
 }
 

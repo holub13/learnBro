@@ -11,7 +11,7 @@ const Input: React.FC<InputProps> = ({
   invalid,
 }): JSX.Element => {
   return (
-    <div>
+    <p>
       <span style={{ color: 'darkred' }}>{invalid}</span>
       <input
         className={`form-control ${invalid && 'invalid'}`}
@@ -21,7 +21,7 @@ const Input: React.FC<InputProps> = ({
         type={type}
         placeholder={placeholder}
       />
-    </div>
+    </p>
   )
 }
 

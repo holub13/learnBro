@@ -12,16 +12,18 @@ const ProductCardBlock: React.FC<ConfigItem> = ({
   manufacturer,
 }): JSX.Element => {
   return (
-    <section className="productCard">
-      <div className="image">
+    <li className="product-card">
+      <p className="image">
         <img src={img} alt="img" />
-      </div>
-      <p>{name}</p>
-      {(gender && <p>Gender: {gender}</p>) ||
-        (passengers && <p>Passengers: {passengers}</p>)}
-      {(skin && <p>Skin color: {skin}</p>) ||
-        (manufacturer && <p>Manufacturer: {manufacturer}</p>)}
-    </section>
+      </p>
+      <ul>
+        <h2>{name}</h2>
+        {(gender && <li>Gender: {gender}</li>) ||
+          (passengers && <li>Passengers: {passengers}</li>)}
+        {(skin && <li>Skin color: {skin}</li>) ||
+          (manufacturer && <li>Manufacturer: {manufacturer}</li>)}
+      </ul>
+    </li>
   )
 }
 

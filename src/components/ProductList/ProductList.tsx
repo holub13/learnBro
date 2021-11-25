@@ -10,7 +10,7 @@ const ProductList: React.FC<ProductProps> = ({
   images,
 }): JSX.Element => {
   return (
-    <section className="productList">
+    <ul className="productList">
       {config.map((item: any) => (
         <ProductCardList
           key={item.name}
@@ -22,7 +22,7 @@ const ProductList: React.FC<ProductProps> = ({
           img={images[Math.floor(Math.random() * images.length)]}
         />
       ))}
-    </section>
+    </ul>
   )
 }
 

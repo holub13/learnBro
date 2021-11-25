@@ -10,7 +10,7 @@ const ProductBlock: React.FC<ProductProps> = ({
   images,
 }): JSX.Element => {
   return (
-    <section className="productBlock">
+    <ul className="product-block">
       {config.map((item: any) => (
         <ProductCardBlock
           key={item.name}
@@ -22,7 +22,7 @@ const ProductBlock: React.FC<ProductProps> = ({
           img={images[Math.floor(Math.random() * images.length)]}
         />
       ))}
-    </section>
+    </ul>
   )
 }
 

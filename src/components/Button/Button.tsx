@@ -19,12 +19,12 @@ const Button: React.FC<ButtonsProps> = ({
   const navigate = useNavigate()
 
   return (
-    <div className="button">
+    <li className="button">
       <h2>{title}</h2>
       <button className="totalCountButton" onClick={() => navigate(path)}>
         {load ? count : 'Wait...'}
       </button>
-    </div>
+    </li>
   )
 }
 

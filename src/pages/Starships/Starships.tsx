@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import ProductBlock from '../../components/ProductBlock'
 import ProductList from '../../components/ProductList'
 
@@ -11,18 +11,22 @@ const Starships: React.FC = (): JSX.Element => {
   const local: any = localStorage.getItem('starships')
   const starships = JSON.parse(local)
 
-  console.log(JSON.parse(localStorage.view))
-  // useEffect(())
+  useLayoutEffect(() => {
+    localStorage.viewStarships
+      ? setView(JSON.parse(localStorage.viewStarships))
+      : localStorage.setItem('viewStarships', 'true')
+  }, [])
+
   const onChangeView = (param: boolean) => {
+    localStorage.setItem('viewStarships', JSON.stringify(param))
     setView(param)
   }
-  console.log(starships)
 
   return (
-    <main className="starships">
-      <header className="headerProducts">
+    <div className="starships">
+      <div className="header-products">
         <h1>Starships</h1>
-        <div className="viewButtons">
+        <p className="view-buttons">
           <button
             type="button"
             className="btn btn-primary"
@@ -37,14 +41,14 @@ const Starships: React.FC = (): JSX.Element => {
           >
             <i className="fa fa-align-justify" title="Align Right"></i>
           </button>
-        </div>
-      </header>
+        </p>
+      </div>
       {view ? (
         <ProductBlock config={starships.results} images={images} />
       ) : (
         <ProductList config={starships.results} images={images} />
       )}
-    </main>
+    </div>
   )
 }
 
